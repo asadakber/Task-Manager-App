@@ -1,0 +1,22 @@
+page-home {
+  ion-header {
+    ion-navbar {
+      ion-buttons {
+        margin-right: 10px !important;
+      }
+    }
+  }
+  .completed {
+    h2 {
+      color: white;
+      background-color: green;
+    }
+  }
+
+  .incomplete {
+    h2 {
+      color: white;
+      background-color: red;
+    }
+  }
+}

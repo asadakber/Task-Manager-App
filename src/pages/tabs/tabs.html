@@ -1,0 +1,6 @@
+<ion-tabs color="primary-dark">
+  <ion-tab [root]="tab1Root" tabTitle="Tasks" tabIcon="clipboard">
+  </ion-tab>
+  <ion-tab [root]="tab2Root" *ngIf="isAdmin" tabTitle="Team" tabIcon="people">
+  </ion-tab>
+</ion-tabs>

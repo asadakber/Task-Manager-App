@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar color="primary-dark">
+    <ion-title>TASKS</ion-title>
+    <ion-buttons end *ngIf="isAdmin" color="light">
+      <button ion-button icon-only (click)="goToTaskCreate()">
+        <ion-icon name="add-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list *ngIf="isAdmin">
+    <h3> Hey {{ (userProfile | async )?.fullName }}, </h3>
+    <p> These are your team's tasks. </p>
+
+    <ion-item *ngFor="let task of adminTaskList | async" (click)="completeTask(task.id)"
+      [class.incomplete]="!task.completed" [class.completed]="task.completed">
+      <h2>{{ task.taskName }}</h2>
+      <h3>Assigned to: {{ task.memberName }}</h3>
+      <p>You can reach out at {{ task.memberEmail }}</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="!isAdmin">
+    <h3> Hey {{ (userProfile | async )?.fullName }}, </h3>
+    <p> These are your assigned tasks. </p>
+
+    <ion-item *ngFor="let task of memberTaskList | async" (click)="completeTask(task.id)"
+      [class.incomplete]="!task.completed" [class.completed]="task.completed">
+      <h2>{{ task.taskName }}</h2>
+    </ion-item>
+  </ion-list>
+</ion-content>

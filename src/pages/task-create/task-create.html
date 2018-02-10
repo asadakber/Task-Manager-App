@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="primary-dark">
+    <ion-title>TaskCreate</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-content padding>
+    <form [formGroup]="createTaskForm" (submit)="createTask()" novalidate>
+      <ion-item>
+        <ion-label stacked>Task Name</ion-label>
+        <ion-input formControlName="taskName" type="text" placeholder="How do you identify this task?"
+          [class.invalid]="!createTaskForm.controls.taskName.valid && createTaskForm.controls.taskName.dirty">
+        </ion-input>
+      </ion-item>
+      <ion-item class="error-message" *ngIf="!createTaskForm.controls.taskName.valid  && createTaskForm.controls.taskName.dirty">
+        <p>Need a task name.</p>
+      </ion-item>
+
+      <ion-list>
+        <ion-item>
+          <ion-label>Assign to</ion-label>
+          <ion-select formControlName="teamMember">
+            <ion-option *ngFor="let member of memberList | async" [value]="member">
+              {{ member.fullName }}
+            </ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+
+      <button ion-button block type="submit" color="primary-dark" [disabled]="!createTaskForm.valid">
+        CREATE NEW TASK
+      </button>
+    </form>
+  </ion-content>
+</ion-content>

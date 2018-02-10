@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar color="primary-dark">
+    <ion-title> {{ (memberProfile | async )?.fullName}} </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>
+    Hey {{ (userProfile | async )?.fullName}},
+  </h3>
+  <p>
+    This is the profile for
+    <strong>{{ (memberProfile | async )?.fullName}}
+    </strong>, below you can see the tasks assigned to this member.
+  </p>
+
+  <ion-list>
+    <ion-list-header>
+      Pending Tasks
+    </ion-list-header>
+    <ion-item *ngFor="let task of pendingTaskList" (click)="completeTask(task.id)"
+      class="incomplete">
+      <h2>{{ task.taskName }}</h2>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      Completed Tasks
+    </ion-list-header>
+    <ion-item *ngFor="let task of completedTaskList" class="completed">
+      <h2>{{ task.taskName }}</h2>
+    </ion-item>
+  </ion-list>
+</ion-content>

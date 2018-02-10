@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-navbar color="primary-dark">
+    <ion-title>CREATE TEAM</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="createTeamForm" (submit)="createTeam()" novalidate>
+    <ion-item>
+      <ion-label stacked>Full Name</ion-label>
+      <ion-input formControlName="fullName" type="text" placeholder="What's your name stranger?"
+        [class.invalid]="!createTeamForm.controls.fullName.valid &&
+         createTeamForm.controls.fullName.touched">
+      </ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!createTeamForm.controls.fullName.valid  &&
+      createTeamForm.controls.fullName.touched">
+      <p>Why don't you want to tell me your name?</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>TEAM</ion-label>
+      <ion-input formControlName="teamName" type="text" placeholder="What name should I give your team?"
+        [class.invalid]="!createTeamForm.controls.teamName.valid &&
+        createTeamForm.controls.teamName.touched">
+      </ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!createTeamForm.controls.teamName.valid  &&
+      createTeamForm.controls.teamName.touched">
+      <p>Hey, you need a team name</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input formControlName="email" type="email" placeholder="You'll use this email to log in."
+        [class.invalid]="!createTeamForm.controls.email.valid &&
+        createTeamForm.controls.email.touched">
+      </ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!createTeamForm.controls.email.valid  &&
+      createTeamForm.controls.email.touched">
+      <p>Please write a valid email.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input formControlName="password" type="password" placeholder="Your password"
+        [class.invalid]="!createTeamForm.controls.password.valid &&
+        createTeamForm.controls.password.touched">
+      </ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!createTeamForm.controls.password.valid  &&
+      createTeamForm.controls.password.touched">
+      <p>Your password needs more than 6 characters.</p>
+    </ion-item>
+
+    <button ion-button block type="submit" color="primary-dark" [disabled]="!createTeamForm.valid">
+      Create an Account
+    </button>
+  </form>
+</ion-content>
